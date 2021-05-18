@@ -5,10 +5,10 @@ const path = require('path');
 class InitWeb3 {
   constructor(_infura, _contractAddress, _mainContractABI, _tokenContractAddress, _tokenContractABI) {
 
-    this.web3Instance = new Web3(_infura);
+    this.web3 = new Web3(_infura);
     this.contractAddress = _contractAddress;
     this.mainContractABI = _mainContractABI;
-    this.mainContractObj = new this.web3Instance.eth.Contract(
+    this.mainContractObj = new this.web3.eth.Contract(
       _mainContractABI,
       _contractAddress
     );
@@ -16,7 +16,7 @@ class InitWeb3 {
     if (_tokenContractAddress) {
       this.tokenContractAddress = _tokenContractAddress;
       this.tokenContractABI = _tokenContractABI;
-      this.tokenContractObj = new this.web3Instance.eth.Contract(
+      this.tokenContractObj = new this.web3.eth.Contract(
         _tokenContractABI,
         _tokenContractAddress
       );
