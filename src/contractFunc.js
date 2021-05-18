@@ -24,6 +24,7 @@ class ContractFunc {
         if (contract === 'ERC') {
             const _path = path.resolve(__dirname, "abis", "tokenContractABI.json");
             fs.readFile(_path, "utf8", (err, data) => {
+                console.log(data);
                 abi = JSON.parse(data);
             });
         } else if (contract === 'FACTORY') {
