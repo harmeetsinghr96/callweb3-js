@@ -78,7 +78,7 @@ class ContractFunc {
         }
     }
 
-    asnyc signTransaction(initObj, signPromise) {
+    signTransaction(initObj, signPromise) {
         return new Promise((resolve, reject) => {
             signPromise.then((signedTx) => {
                 const sentTx = initObj.web3.eth.sendSignedTransaction(signedTx.raw || signedTx.rawTransaction);
