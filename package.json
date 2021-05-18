@@ -1,0 +1,17 @@
+{
+  "name": "callweb3js",
+  "version": "1.0.0",
+  "description": "This is a web3 package for calling normal functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "callweb3js"
+  ],
+  "author": "Harmeet Singh",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.3.6"
+  }
+}
