@@ -1,6 +1,6 @@
 {
   "name": "callweb3js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is a web3 package for calling normal functions",
   "main": "index.js",
   "scripts": {
