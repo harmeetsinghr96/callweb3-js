@@ -13,9 +13,10 @@ class CallWeb3 {
             callContractObj: initializer.mainContractObj,
             callTokenContractObj: initializer.tokenContractObj
         }
+
+        return this.web3;
     }
 }
 
-const callWeb3 = new CallWeb3();
-module.exports = callWeb3;
+module.exports = CallWeb3;
 
