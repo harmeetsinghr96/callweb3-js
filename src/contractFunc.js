@@ -19,6 +19,7 @@ class ContractFunc {
     async signTransactionOnNetworkForERC(initObj, name, params, privateKey, callType) {
         if (callType === 'SEND') {
             const gasPrice = await initObj.web3.eth.getGasPrice();
+            console.log(params);
             let tx;
             if (params.length > 0) {
                 tx = {
