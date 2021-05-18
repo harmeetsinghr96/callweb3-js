@@ -12,9 +12,9 @@ class CallWeb3 {
         return this.web3;
     }
 
-    callFunc() {
+    callFunc(contractType, name, callType) {
         const call =  CallWeb3.callFunc(this.web3, contractType, name, callType);
-        console.log(call);
+        return call;
     }
 }
 

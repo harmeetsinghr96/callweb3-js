@@ -7,7 +7,6 @@ class ContractFunc {
 
     callFunc(initObj, contractType, name, callType) {
         const abi = this.readJsonFiles(contractType);
-        console.log(abi);
         // const gasPrice = await init.web3.eth.getGasPrice();
         // const tx = {
         //   to: initObj.contractAddress,
@@ -16,7 +15,7 @@ class ContractFunc {
         //   data: initObj.tokenContractObj.methods[name]().encodeABI()
         // };
 
-        return true;
+        return abi;
     }
 
     readJsonFiles(contract) {
