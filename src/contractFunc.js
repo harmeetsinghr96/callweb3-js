@@ -37,7 +37,7 @@ class ContractFunc {
            }
 
            const signPromise = initObj.web3.eth.accounts.signTransaction(tx, privateKey);
-           return await this.signTransaction(initObj, signPromise);
+           return await this.signTransactionFn(initObj, signPromise);
         } else if (callType === 'CALL') {
             if (params.length > 0) {
                return initObj.tokeContractObj.methods[name](params.join()).call();
@@ -68,7 +68,7 @@ class ContractFunc {
            }
 
            const signPromise = initObj.web3.eth.accounts.signTransaction(tx, privateKey);
-           return await this.signTransaction(initObj, signPromise);
+           return await this.signTransactionFn(initObj, signPromise);
         } else if (callType === 'CALL') {
             if (params.length > 0) {
                return initObj.mainContractObj.methods[name](params.join()).call();
@@ -78,11 +78,12 @@ class ContractFunc {
         }
     }
 
-    signTransaction(initObj, signPromise) {
+    signTransactionFn(initObj, signPromise) {
         return new Promise((resolve, reject) => {
             signPromise.then((signedTx) => {
                 const sentTx = initObj.web3.eth.sendSignedTransaction(signedTx.raw || signedTx.rawTransaction);
-                sentTx.on("receipt", async (receipt) => {
+                
+                sentTx.on("receipt", (receipt) => {
                     console.log('Transaction has been succesfully done');
                     resolve(receipt);
                 });
