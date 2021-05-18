@@ -1,2 +1,6 @@
 # callweb3-js
-Using web3 functions.
+This package is using web3 and web3 has been initialized just use common function from this package.
+
+###Installation with npm
+
+npm i --save callweb3js
