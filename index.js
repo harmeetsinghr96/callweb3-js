@@ -12,8 +12,8 @@ class CallWeb3 {
         return this.web3;
     }
 
-    callFunc(contractType, name, callType) {
-        const call =  ContractFunc.callFunc(this.web3, contractType, name, callType);
+    callFunc(contractType, name, params, privateKey, callType) {
+        const call =  ContractFunc.callFunc(this.web3, contractType, name, params, privateKey, callType);
         return call;
     }
 }

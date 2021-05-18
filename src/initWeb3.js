@@ -7,6 +7,7 @@ class InitWeb3 {
 
     this.web3Instance = new Web3(_infura);
     this.contractAddress = _contractAddress;
+    this.mainContractABI = _mainContractABI;
     this.mainContractObj = new this.web3Instance.eth.Contract(
       _mainContractABI,
       _contractAddress
@@ -14,6 +15,7 @@ class InitWeb3 {
 
     if (_tokenContractAddress) {
       this.tokenContractAddress = _tokenContractAddress;
+      this.tokenContractABI = _tokenContractABI;
       this.tokenContractObj = new this.web3Instance.eth.Contract(
         _tokenContractABI,
         _tokenContractAddress
@@ -23,7 +25,7 @@ class InitWeb3 {
     /*
      * Writing JSON files (ABIS) 
      */
-    this.writeJSONfile(_mainContractABI, _tokenContractABI);
+    // this.writeJSONfile(_mainContractABI, _tokenContractABI);
   }
 
   writeJSONfile(_mainContractABI, _tokenContractABI) {
