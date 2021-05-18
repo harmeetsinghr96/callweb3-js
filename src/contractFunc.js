@@ -5,11 +5,11 @@ class ContractFunc {
     
     constructor() {}
 
-    callFunc(initObj, contractType, name, params, privateKey, callType) {
+    async callFunc(initObj, contractType, name, params, privateKey, callType) {
         if (contractType === 'ERC') {
-            this.signTransactionOnNetworkForERC(initObj, name, params, privateKey, callType);
+            return await this.signTransactionOnNetworkForERC(initObj, name, params, privateKey, callType);
         } else if (contractType === 'CONTRACT') {
-            this.signTransactionOnNetworkForMain(initObj, name, params, privateKey, callType);
+            return await this.signTransactionOnNetworkForMain(initObj, name, params, privateKey, callType);
         }
       
 
@@ -47,7 +47,7 @@ class ContractFunc {
         }
     }
 
-    signTransactionOnNetworkForMain(initObj, name, params, privateKey, callType) {
+    async signTransactionOnNetworkForMain(initObj, name, params, privateKey, callType) {
         if (callType === 'SEND') {
             const gasPrice = await initObj.web3.eth.getGasPrice();
             let tx;
@@ -78,7 +78,7 @@ class ContractFunc {
         }
     }
 
-    signTransaction(initObj, signPromise) {
+    asnyc signTransaction(initObj, signPromise) {
         return new Promise((resolve, reject) => {
             signPromise.then((signedTx) => {
                 const sentTx = initObj.web3.eth.sendSignedTransaction(signedTx.raw || signedTx.rawTransaction);
