@@ -18,6 +18,7 @@ class ContractFunc {
 
     async signTransactionOnNetworkForERC(initObj, name, params, privateKey, callType) {
         if (callType === 'SEND') {
+            
             const gasPrice = await initObj.web3.eth.getGasPrice();
             console.log(params);
             let tx;
@@ -26,8 +27,9 @@ class ContractFunc {
                     to: initObj.contractAddress,
                     gasPrice: gasPrice,
                     gas: initObj.web3.utils.toHex(1000000),
-                    data: initObj.tokenContractObj.methods[name](params.join()).encodeABI()
+                    data: initObj.tokenContractObj.methods[name](...params).encodeABI()
                 }
+
            } else if (callType === 'CALL') {
                 tx = {
                     to: initObj.contractAddress,
@@ -39,9 +41,10 @@ class ContractFunc {
 
            const signPromise = initObj.web3.eth.accounts.signTransaction(tx, privateKey);
            return await this.signTransactionFn(initObj, signPromise);
+        
         } else if (callType === 'CALL') {
             if (params.length > 0) {
-               return initObj.tokeContractObj.methods[name](params.join()).call();
+                return initObj.tokeContractObj.methods[name](...params).call();
             } else {
                 return initObj.tokeContractObj.methods[name]().call();
             }
@@ -50,6 +53,7 @@ class ContractFunc {
 
     async signTransactionOnNetworkForMain(initObj, name, params, privateKey, callType) {
         if (callType === 'SEND') {
+           
             const gasPrice = await initObj.web3.eth.getGasPrice();
             let tx;
             if (params.length > 0) {
@@ -57,7 +61,7 @@ class ContractFunc {
                     to: initObj.contractAddress,
                     gasPrice: gasPrice,
                     gas: initObj.web3.utils.toHex(1000000),
-                    data: initObj.mainContractObj.methods[name](params.join()).encodeABI()
+                    data: initObj.mainContractObj.methods[name](...params).encodeABI()
                 }
            } else if (callType === 'CALL') {
                 tx = {
@@ -70,9 +74,10 @@ class ContractFunc {
 
            const signPromise = initObj.web3.eth.accounts.signTransaction(tx, privateKey);
            return await this.signTransactionFn(initObj, signPromise);
+
         } else if (callType === 'CALL') {
             if (params.length > 0) {
-               return initObj.mainContractObj.methods[name](params.join()).call();
+                return initObj.mainContractObj.methods[name](...params).call();
             } else {
                 return initObj.mainContractObj.methods[name]().call();
             }
