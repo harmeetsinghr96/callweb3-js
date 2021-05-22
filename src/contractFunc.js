@@ -94,10 +94,11 @@ class ContractFunc {
                     resolve(receipt);
                 });
                 sentTx.on("error", (error) => {
-                    reject(err)
+                    console.log(error);
+                    reject(error)
                 });
-            }).catch((err) => {
-                reject(err)
+            }).catch((error) => {
+                reject(error)
             });
         })
     }
