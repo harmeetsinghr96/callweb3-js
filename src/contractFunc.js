@@ -24,7 +24,7 @@ class ContractFunc {
             if (params.length > 0) {
                 tx = {
                     to: initObj.contractAddress,
-                    gasPrice: await initObj.web3.eth.getGasPrice();,
+                    gasPrice: await initObj.web3.eth.getGasPrice(),
                     gas: initObj.web3.utils.toHex(5000000),
                     data: initObj.tokenContractObj.methods[name](...params).encodeABI()
                 }
