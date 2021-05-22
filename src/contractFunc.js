@@ -18,15 +18,14 @@ class ContractFunc {
 
     async signTransactionOnNetworkForERC(initObj, name, params, privateKey, callType) {
         if (callType === 'SEND') {
-            
-            const gasPrice = await initObj.web3.eth.getGasPrice();
+
             console.log(params);
             let tx;
             if (params.length > 0) {
                 tx = {
                     to: initObj.contractAddress,
-                    gasPrice: gasPrice,
-                    gas: initObj.web3.utils.toHex(1000000),
+                    gasPrice: await initObj.web3.eth.getGasPrice();,
+                    gas: initObj.web3.utils.toHex(5000000),
                     data: initObj.tokenContractObj.methods[name](...params).encodeABI()
                 }
 
@@ -34,7 +33,7 @@ class ContractFunc {
                 tx = {
                     to: initObj.contractAddress,
                     gasPrice: gasPrice,
-                    gas: initObj.web3.utils.toHex(1000000),
+                    gas: initObj.web3.utils.toHex(5000000),
                     data: initObj.tokenContractObj.methods[name]().encodeABI()
                 }
            }
@@ -60,14 +59,14 @@ class ContractFunc {
                 tx = {
                     to: initObj.contractAddress,
                     gasPrice: gasPrice,
-                    gas: initObj.web3.utils.toHex(1000000),
+                    gas: initObj.web3.utils.toHex(5000000),
                     data: initObj.mainContractObj.methods[name](...params).encodeABI()
                 }
            } else if (callType === 'CALL') {
                 tx = {
                     to: initObj.contractAddress,
                     gasPrice: gasPrice,
-                    gas: initObj.web3.utils.toHex(1000000),
+                    gas: initObj.web3.utils.toHex(5000000),
                     data: initObj.mainContractObj.methods[name]().encodeABI()
                 }
            }
