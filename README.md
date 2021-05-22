@@ -6,12 +6,29 @@ This package is using web3 and web3 has been initialized just use common functio
 npm i --save callweb3js
 
 ## How it works..
-There are two functions that has been used in this package.
-Firest is  - init();
 
-- init() :- Init accept 5 parameteres.
-    - Infura id
-    - contract address
-    - contract ABI
-    - token contract address (OPTIONAL) - Use only if you want to interect with token contracct
-    - token ABI (OPTIONAL) - Likewise, token contract address
+There are two functions that has been used in this package.
+
+### (1) - init();
+
+ /*
+     * Function: InIt()
+     * @param {*} _infura // Curreant Provider - Set Network // Mainnet, rinkeby
+     * @param {*} _contractAddress // Contract Address that has to be init
+     * @param {*} _mainContractABI // Main Contract ABI JSON FILE
+     * @param {*} _tokenContractAddress  // Token contract if any
+     * @param {*} _tokenContractABI // Token contract ABI file (JSON) if any
+     * @returns Initialized Web3
+*/
+
+### (2) - callContract;
+
+  /*
+     * Function: callContract
+     * @param {*} contractType // ERC or CONTRACT
+     * @param {*} name // Function name in ABI
+     * @param {*} params // ALways be in Array ["0x00", "100", ....]
+     * @param {*} privateKey // User Wallet Private Key
+     * @param {*} callType // CALL or SEND
+     * @returns Transaction Reciept or Error
+  */

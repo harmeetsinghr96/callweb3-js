@@ -53,12 +53,11 @@ class ContractFunc {
     async signTransactionOnNetworkForMain(initObj, name, params, privateKey, callType) {
         if (callType === 'SEND') {
            
-            const gasPrice = await initObj.web3.eth.getGasPrice();
             let tx;
             if (params.length > 0) {
                 tx = {
                     to: initObj.contractAddress,
-                    gasPrice: gasPrice,
+                    gasPrice: await initObj.web3.eth.getGasPrice(),
                     gas: initObj.web3.utils.toHex(5000000),
                     data: initObj.mainContractObj.methods[name](...params).encodeABI()
                 }
@@ -93,7 +92,6 @@ class ContractFunc {
                     resolve(receipt);
                 });
                 sentTx.on("error", (error) => {
-                    console.log(error);
                     reject(error)
                 });
             }).catch((error) => {
@@ -108,7 +106,6 @@ class ContractFunc {
         if (contract === 'ERC') {
             const _path = path.resolve(__dirname, "abis", "tokenContractABI.json");
             fs.readFile(_path, "utf8", (err, data) => {
-                console.log(data);
                 abi = JSON.parse(data);
             });
         } else if (contract === 'FACTORY') {
